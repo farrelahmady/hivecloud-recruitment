@@ -24,7 +24,7 @@ class CloudCapacityController extends Controller
         Excel::store(new CloudCapacityExport, 'cloud-capacity.xlsx');
 
         // Riyan.setiawan@teknovatus.com
-        Mail::to('farrelfay.ce@gmail.com')->send(new CloudCapacityReportMail);
+        Mail::to('Riyan.setiawan@teknovatus.com')->send(new CloudCapacityReportMail);
 
         Storage::delete('cloud-capacity.xlsx');
 
