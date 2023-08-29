@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
+
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+Route::controller(App\Http\Controllers\CloudCapacityController::class)->prefix('cloud')->group(function () {
+    Route::get('/',  'index')->name('cloud-capacity.index');
+    Route::post('/report',  'report')->name('cloud-capacity.report');
+});

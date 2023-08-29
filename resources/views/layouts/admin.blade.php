@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    @if (session('success'))
+        <x-alert-success />
+    @endif
+
     @include('layouts.partials.sidebar')
 
     <main class="p-4 sm:ml-64">
