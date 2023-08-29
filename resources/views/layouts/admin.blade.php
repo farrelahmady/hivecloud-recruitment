@@ -17,7 +17,7 @@
             <h1 class="text-4xl font-bold mb-4">{{ $title }}</h1>
             <hr>
         </div>
-        <div class="grid grid-cols-3">
+        <div class="grid lg:grid-cols-3">
             @yield('content')
         </div>
     </main>

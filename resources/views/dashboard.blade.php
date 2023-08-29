@@ -1,7 +1,7 @@
 @extends('layouts.admin', ['title' => 'Dashboard'])
 
 @section('content')
-    <div class="col-span-2 rounded-lg border-2 p-4">
+    <div class="lg:col-span-3 rounded-lg border-2 p-4">
         <h2 class="text-3xl font-semibold mb-4 border-b pb-4">Cloud Capacity</h2>
         <canvas id="myChart"></canvas>
     </div>
@@ -16,30 +16,45 @@
         const datasets = {{ Js::from($datasets) }}
         const labels = {{ Js::from($labels) }}
 
-        console.log(datasets);
-
-        new Chart(ctx, {
+        const chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 datasets: datasets,
                 labels: labels
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         ticks: {
                             beginAtZero: true,
                             stepSize: 6,
+                            font: {
+                                weight: 'bold'
+                            }
 
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         position: 'bottom'
-                    }
-                }
+                    },
+                },
+
             }
+        });
+
+        window.addEventListener('resize', () => {
+            chart.resize(chart.canvas.parentNode.clientWidth, 1);
         });
     </script>
 @endpush
